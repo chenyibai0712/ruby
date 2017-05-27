@@ -1,0 +1,54 @@
+<!--<h2>Log in</h2>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <% if devise_mapping.rememberable? -%>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end -%>
+
+  <div class="actions">
+    <%= f.submit "Log in" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+-->
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 form-box">
+                          <div class="form-top">
+                            <div class="form-top-left">
+                              <h3>请您登录书籍管理系统</h3>
+                                <p>请输入您的用户名和密码:</p>
+                            </div>
+                            <div class="form-top-right">
+                            </div>
+                            </div>
+                            <div class="form-bottom">
+                          <form role="form" action="" method="post" class="login-form">
+                            <div class="form-group">
+                              <label class="sr-only" for="form-username">用户名</label>
+                                <%= f.email_field :email, autofocus: true , :class =>'form-username form-control' ,:placeholder=>'用户名...' ,:type=>'text'%>
+                              </div>
+                              <div class="form-group">
+                                <label class="sr-only" for="form-password">密码</label>
+                                <%= f.password_field :password, autocomplete: "off" ,:placeholder=>'密码...', :class =>'form-password form-control' %>
+                              </div>
+                              <%= f.submit "登   录!" , :class => 'btn'   %>
+                          </form>
+                        </div>
+                        </div>
+                    </div>
+                    <% end %>
