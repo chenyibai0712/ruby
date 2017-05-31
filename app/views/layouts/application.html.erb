@@ -35,7 +35,7 @@
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
             <% if user_signed_in? %>
-                <li><%= link_to current_user.email, profile_path %></li>
+                <li><%= link_to current_user.email %></li>
                 <li><%= link_to "退出", destroy_user_session_path, method: :delete %></li>
                 <% else %>
                 <li><%= link_to "登录", new_user_session_path %></li>
@@ -58,7 +58,7 @@
             <ul class="nav nav-list">
               <li class="nav-header">书籍管理系统</li>
               <% if user_signed_in? %>
-                  <li><%= link_to current_user.email, profile_path %></li>
+                  <li><%= link_to current_user.email %></li>
                   <li><%= link_to "退出", destroy_user_session_path, method: :delete %></li>
                   <% else %>
                   <li><%= link_to "登录", new_user_session_path %></li>
