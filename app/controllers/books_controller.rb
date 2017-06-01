@@ -4,7 +4,8 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.all
+    @q  = Book.ransack(params[:q])
+    @books = @q.result(distinct: true)
   end
 
   # GET /books/1
@@ -25,10 +26,10 @@ class BooksController < ApplicationController
   # POST /books.json
   def create
     @book = Book.new(book_params)
-
+    @book.picture='/default.jpg'
     respond_to do |format|
       if @book.save
-        format.html { redirect_to @book, notice: 'Book was successfully created.' }
+        format.html { redirect_to books_url, notice: '书籍添加成功.' }
         format.json { render :show, status: :created, location: @book }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class BooksController < ApplicationController
   def update
     respond_to do |format|
       if @book.update(book_params)
-        format.html { redirect_to @book, notice: 'Book was successfully updated.' }
+        format.html { redirect_to books_url, notice: '书籍添加成功.' }
         format.json { render :show, status: :ok, location: @book }
       else
         format.html { render :edit }
@@ -56,7 +57,7 @@ class BooksController < ApplicationController
   def destroy
     @book.destroy
     respond_to do |format|
-      format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
+      format.html { redirect_to books_url, notice: '书籍删除成功.' }
       format.json { head :no_content }
     end
   end

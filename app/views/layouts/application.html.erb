@@ -35,6 +35,12 @@
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
             <% if user_signed_in? %>
+            <%= form_tag  books_path,  method: :get, class:  "navbar-form  navbar-left"  do  %>
+                 <div  class="form-group">
+            <%= text_field_tag  "q[name_cont]", params["q"] &&  params["q"]["name_cont"], class:
+                "form-control input-sm  search-form", placeholder:  "输入书籍名称"  %>
+            </div>
+          <%  end %>
                 <li><%= link_to current_user.email %></li>
                 <li><%= link_to "退出", destroy_user_session_path, method: :delete %></li>
                 <% else %>

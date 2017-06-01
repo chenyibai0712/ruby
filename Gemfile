@@ -33,11 +33,14 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem "therubyracer"
-
+#模糊查询
+gem 'ransack'
 gem "less-rails"
+#上传下载
+gem 'carrierwave'
 
 gem "twitter-bootstrap-rails"
-
+#关于权限
 gem 'devise'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

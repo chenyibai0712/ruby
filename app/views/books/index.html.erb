@@ -13,7 +13,7 @@
       <th>电子书地址</th>
       <th>书籍图片</th>
       <th>书籍作者</th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th>可操作</th>
     </tr>
   </thead>
   <tbody>
@@ -24,18 +24,24 @@
         <td><%= book.price %></td>
         <td><%= book.description %></td>
         <td><%= book.types %></td>
-        <td><%= book.url %></td>
-        <td><%= book.picture %></td>
+        <td><a href ="<%= book.url %>">下载</a></td>
+        <td>
+        <% if book.picture? %>
+        <%= image_tag(book.picture, :height => '45', :width => 'auto')  %>
+         <% else %>
+         <%= image_tag('/default.jpg', :height => '45', :width => 'auto')  %>
+        <% end %>
+        </td>
         <td><%= book.author %></td>
         <td>
-          <%= link_to t('.show', :default => t("helpers.links.show")),
+          <%= link_to "详情",
                       book_path(book), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+          <%= link_to "编辑",
                       edit_book_path(book), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+          <%= link_to "删除",
                       book_path(book),
                       :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => '确定删除？')) },
                       :class => 'btn btn-xs btn-danger' %>
         </td>
       </tr>
@@ -43,6 +49,6 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<%= link_to "新增",
             new_book_path,
-            :class => 'btn btn-primary' %>
+            :class => 'btn btn-success' %>

@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170527073151) do
+ActiveRecord::Schema.define(version: 20170601024159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "book_types", force: :cascade do |t|
+    t.string "types_name"
+    t.string "types_tag"
+    t.string "types_abstract"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "books", force: :cascade do |t|
     t.string "name"
@@ -23,6 +31,15 @@ ActiveRecord::Schema.define(version: 20170527073151) do
     t.text "url"
     t.string "picture"
     t.string "author"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "book_id"
+    t.integer "score"
+    t.text "comment"
+    t.string "user_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
