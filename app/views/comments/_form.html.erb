@@ -1,0 +1,60 @@
+<%= form_for @comment, :html => { :class => "form-horizontal comment" } do |f| %>
+
+  <% if @comment.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @comment.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <% book_id=@book_id %>
+    <%= f.label '书籍编号', :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <% if book_id.nil? %>
+        <%= f.text_field :book_id, :class => 'form-control',:readonly => true%>
+      <% else %>
+        <%= f.text_field :book_id, :class => 'form-control',:value => book_id,:readonly => true%>
+      <% end %>
+    </div>
+    <%=f.error_span(:book_id) %>
+  </div>
+  <div class="form-group">
+    <%= f.label '书籍打分', :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :score, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:score) %>
+  </div>
+  <div class="form-group">
+    <%= f.label '书籍评论', :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :comment, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:comment) %>
+  </div>
+  <div class="form-group">
+    <%= f.label '评论人', :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :user_name, :class => 'form-control' ,:value => current_user.email,:readonly => true%>
+    </div>
+    <%=f.error_span(:user_name) %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                comments_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>

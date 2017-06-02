@@ -1,0 +1,41 @@
+<%= form_for @read_log, :html => { :class => "form-horizontal read_log" } do |f| %>
+
+  <% if @read_log.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@read_log.errors.count, "error") %> prohibited this read_log from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @read_log.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :reader, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :reader, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:reader) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :read_book, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :read_book, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:read_book) %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                read_logs_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>

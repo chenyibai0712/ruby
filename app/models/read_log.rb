@@ -1,0 +1,2 @@
+class ReadLog < ApplicationRecord
+end

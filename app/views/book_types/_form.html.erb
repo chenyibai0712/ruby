@@ -1,0 +1,48 @@
+<%= form_for @book_type, :html => { :class => "form-horizontal book_type" } do |f| %>
+
+  <% if @book_type.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@book_type.errors.count, "error") %> prohibited this book_type from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @book_type.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :"分类名称", :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :types_name, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:types_name) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :"分类标签", :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :types_tag, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:types_tag) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :"分类介绍", :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :types_abstract, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:types_abstract) %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                book_types_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>

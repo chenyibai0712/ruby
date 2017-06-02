@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170601024159) do
+ActiveRecord::Schema.define(version: 20170602090529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "book_contents", force: :cascade do |t|
+    t.string "book_name"
+    t.text "book_content"
+    t.string "book_chapter"
+    t.integer "book_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "book_types", force: :cascade do |t|
     t.string "types_name"
@@ -33,6 +42,8 @@ ActiveRecord::Schema.define(version: 20170601024159) do
     t.string "author"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "book_status", default: 0
+    t.string "book_loaner"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -40,6 +51,21 @@ ActiveRecord::Schema.define(version: 20170601024159) do
     t.integer "score"
     t.text "comment"
     t.string "user_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "loan_logs", force: :cascade do |t|
+    t.string "book_name"
+    t.string "loaner_name"
+    t.string "loan_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "read_logs", force: :cascade do |t|
+    t.string "reader"
+    t.text "read_book"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -57,6 +83,7 @@ ActiveRecord::Schema.define(version: 20170601024159) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

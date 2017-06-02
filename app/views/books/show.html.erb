@@ -26,16 +26,9 @@
   <dd><%= @book.author %></dd>
 </dl>
 
-<%= link_to '返回',
-              books_path, :class => 'btn btn-default'  %>
-<%= link_to '编辑',
-              edit_book_path(@book), :class => 'btn btn-default' %>
-<%= link_to '删除',
-              book_path(@book),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => '确定删除？')) },
-              :class => 'btn btn-danger' %>
-<%= link_to '评论列表',
-              {:controller =>'comments',:action => 'index',:book_id =>@book.id } , :class => 'btn btn-default'%>              
-<%= link_to '添加评论',
-              {:controller =>'comments',:action => 'new',:book_id =>@book.id } , :class => 'btn btn-default' %>
+<%= link_to '返回',books_path, :class => 'btn btn-default'  %>
+<%= link_to '删除', book_path(@book),:method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => '确定删除？')) },:class => 'btn btn-danger' %>
+<%= link_to '查看评论', {:controller =>'comments',:action => 'index',:book_id =>@book.id } , :class => 'btn btn-default'%>
+<%= link_to '追加评论',{:controller =>'comments',:action => 'new',:book_id =>@book.id } , :class => 'btn btn-default' %>
+<%= link_to '阅读本书',{:controller =>'book_contents',:action => 'show',:id =>1, :read_book=>@book.name,:reader=>current_user.email}, :class => 'btn btn-default' %>
+<%= link_to '借书记录',{:controller =>'loan_logs',:action => 'index', :read_book=>@book.name,:reader=>current_user.email}, :class => 'btn btn-default' %>

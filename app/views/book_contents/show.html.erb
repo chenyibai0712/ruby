@@ -1,0 +1,20 @@
+<%- model_class = BookContent -%>
+<div class="page-header">
+  <h1><%= @book_name %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dd><%= @book_content.book_chapter %></dd>
+  <dd><%= @book_content.book_content %></dd>
+</dl>
+<!--
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              book_contents_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_book_content_path(@book_content), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              book_content_path(@book_content),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+-->

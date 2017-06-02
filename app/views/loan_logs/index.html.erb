@@ -1,0 +1,31 @@
+<%- model_class = LoanLog -%>
+<div class="page-header">
+  <h1 id="title"></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>书籍名称</th>
+      <th>借书者</th>
+      <th>借还书状态</th>
+      <th>借/还书时间</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @loan_logs.each do |loan_log| %>
+      <tr>
+        <td><%= loan_log.book_name %></td>
+        <td><%= loan_log.loaner_name %></td>
+        <td><a href="javascript:;"  class="btn btn-xs btn-info"><%=  loan_log.loan_status.to_i>0?"借书":"还书"%></a></td>
+        <td><%=l loan_log.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<script type = "text/javascript" charset = "utf-8" >
+  if(typeof($("tbody tr:first td:first").html())!='undefined'&&typeof($("tbody tr:first td:first").html())!=''){
+      $("#title").html($("tbody tr:first td:first").html()+" 借书记录");
+  }else{
+      $("#title").html("暂无借书记录");
+  }
+</script>

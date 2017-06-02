@@ -1,0 +1,48 @@
+<%= form_for @loan_log, :html => { :class => "form-horizontal loan_log" } do |f| %>
+
+  <% if @loan_log.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@loan_log.errors.count, "error") %> prohibited this loan_log from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @loan_log.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :book_name, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :book_name, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:book_name) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :loaner_name, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :loaner_name, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:loaner_name) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :loan_status, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :loan_status, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:loan_status) %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                loan_logs_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>

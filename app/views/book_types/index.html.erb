@@ -1,0 +1,38 @@
+<%- model_class = BookType -%>
+<div class="page-header">
+  <h1>书籍类型</h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>分类名称</th>
+      <th>分类标签</th>
+      <th>分类介绍</th>
+      <th>创建时间</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @book_types.each do |book_type| %>
+      <tr>
+        <td><%= book_type.types_name %></td>
+        <td><%= book_type.types_tag %></td>
+        <td><%= book_type.types_abstract %></td>
+        <td><%=l book_type.created_at %></td>
+        <td>
+          <%= link_to "编辑",
+                      edit_book_type_path(book_type), :class => 'btn btn-default btn-xs' %>
+          <%= link_to "删除",
+                      book_type_path(book_type),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => '确定删除?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "新增",
+            new_book_type_path,
+            :class => 'btn btn-primary' %>

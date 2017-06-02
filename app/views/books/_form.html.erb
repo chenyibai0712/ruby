@@ -39,12 +39,12 @@
   <div class="form-group">
     <%= f.label '书籍分类', :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :types, :class => 'form-control' %>
+      <%=f.select_tag "book[types]" , options_from_collection_for_select(@book_types, 'types_name', 'types_name'), :class => 'form-control'%>
     </div>
     <%=f.error_span(:types) %>
   </div>
   <div class="form-group">
-    <%= f.label '电子书地址', :class => 'control-label col-lg-2' %>
+    <%= f.label '上传电子书', :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.file_field :url %>
     </div>
